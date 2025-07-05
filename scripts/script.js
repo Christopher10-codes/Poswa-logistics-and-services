@@ -58,7 +58,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
         
         // Animation on scroll
         const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.service-card, .feature, .testimonial');
+            const elements = document.querySelectorAll('.service-card, .feature, .testimonial, .gallery-item');
             
             elements.forEach(element => {
                 const elementPosition = element.getBoundingClientRect().top;
