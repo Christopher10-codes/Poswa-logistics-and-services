@@ -310,43 +310,45 @@
                     </div>
                 </div>
             </div>
-            <div class="contact-form futuristic-card">
-                <form id="quoteForm">
-                    <div class="form-group">
-                        <label for="firstName">First Name*</label>
-                        <input type="text" id="firstName" name="firstName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name*</label>
-                        <input type="text" id="lastName" name="lastName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number*</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email*</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="deliveryDate">Preferred Delivery Date*</label>
-                        <input type="date" id="deliveryDate" name="deliveryDate" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="pickupLocation">Pickup Location*</label>
-                        <input type="text" id="pickupLocation" name="pickupLocation" placeholder="Street address, city" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="deliveryDestination">Delivery Destination*</label>
-                        <input type="text" id="deliveryDestination" name="deliveryDestination" placeholder="Street address, city" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="items">Items to be Delivered*</label>
-                        <textarea id="items" name="items" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Request Free Quote</button>
-                </form>
+           <div class="contact-form futuristic-card">
+        <form id="quoteForm" action="https://formspree.io/f/meogoydz" method="POST">
+            <div id="formStatus" class="form-status"></div>
+            
+            <div class="form-group">
+                <label for="firstName">First Name*</label>
+                <input type="text" id="firstName" name="firstName" required>
             </div>
+            <div class="form-group">
+                <label for="lastName">Last Name*</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number*</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email*</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="deliveryDate">Preferred Delivery Date*</label>
+                <input type="date" id="deliveryDate" name="deliveryDate" required>
+            </div>
+            <div class="form-group">
+                <label for="pickupLocation">Pickup Location*</label>
+                <input type="text" id="pickupLocation" name="pickupLocation" placeholder="Street address, city" required>
+            </div>
+            <div class="form-group">
+                <label for="deliveryDestination">Delivery Destination*</label>
+                <input type="text" id="deliveryDestination" name="deliveryDestination" placeholder="Street address, city" required>
+            </div>
+            <div class="form-group">
+                <label for="items">Items to be Delivered*</label>
+                <textarea id="items" name="items" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">Request Free Quote</button>
+        </form>
+    </div>
         </div>
     </section>
 
