@@ -33,17 +33,109 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 });
 
 
-        // Form Submission
-        const quoteForm = document.getElementById('quoteForm');
+       document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('quoteForm');
+    const submitBtn = document.getElementById('submitBtn');
+    let isSubmitting = false; // Track submission state
+
+    // Create message element
+    const messageElement = document.createElement('div');
+    messageElement.className = 'form-message';
+    document.body.appendChild(messageElement);
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
         
-        quoteForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+        // Prevent multiple submissions
+        if (isSubmitting) return;
+        isSubmitting = true;
+        
+        // Update button state
+        submitBtn.disabled = true;
+        submitBtn.classList.add('submitting');
+        submitBtn.textContent = 'Sending...';
+
+        try {
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
             
-            // Here you would typically send the form data to your server
-            // For demonstration, we'll just show an alert
-            alert('Thank you for your request! We will contact you shortly with your quote.');
-            quoteForm.reset();
-        });
+            if (response.ok) {
+                showMessage('Your request was submitted successfully!', 'success');
+                setTimeout(() => form.reset(), 5000);
+            } else {
+                const errorData = await response.json();
+                const errorMsg = errorData.errors 
+                    ? errorData.errors.map(error => error.message).join(', ')
+                    : 'There was a problem submitting your form.';
+                showMessage(errorMsg, 'error');
+            }
+        } catch (error) {
+            showMessage('Network error. Please try again.', 'error');
+            console.error('Error:', error);
+        } finally {
+            // Reset button state with delay to prevent rapid successive clicks
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('submitting');
+                submitBtn.textContent = 'Request Free Quote';
+                isSubmitting = false;
+            }, 1000); // 1-second cooldown
+        }
+    });
+
+    // Add this right after your existing form submission code
+function showToast(message, type) {
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = `form-toast ${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    // Make it visible
+    setTimeout(() => toast.classList.add('visible'), 10);
+    
+    // Auto-hide after 5 seconds
+    setTimeout(() => {
+        toast.classList.remove('visible');
+        // Remove element after fade out
+        setTimeout(() => toast.remove(), 400);
+    }, 5000);
+}
+
+// Modify your existing success/error handlers to use:
+// On success:
+showToast('Your request was submitted successfully!', 'success');
+
+// On error:
+showToast('Submission failed. Please try again.', 'error');
+
+    // Improved click handling for mobile devices
+    submitBtn.addEventListener('touchstart', function() {
+        this.classList.add('active');
+    });
+    
+    submitBtn.addEventListener('touchend', function() {
+        this.classList.remove('active');
+    });
+
+    function showMessage(text, type) {
+        messageElement.textContent = text;
+        messageElement.className = `form-message visible ${type}`;
+        
+        setTimeout(() => {
+            messageElement.classList.add('hiding');
+            setTimeout(() => {
+                messageElement.className = 'form-message';
+            }, 500);
+        }, 5000);
+    }
+});
         
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -58,7 +150,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
         
         // Animation on scroll
         const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.service-card, .feature, .testimonial, .gallery-item');
+            const elements = document.querySelectorAll('.service-card, .feature, .testimonial');
             
             elements.forEach(element => {
                 const elementPosition = element.getBoundingClientRect().top;
