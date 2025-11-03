@@ -328,6 +328,58 @@
             height: 75px;
             border-radius: 100%;
         }
+
+        .video-item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.video-description {
+    background: linear-gradient(135deg, var(--light-blue), var(--medium-blue));
+    color: var(--white);
+    padding: 20px;
+    border-radius: 15px 15px 0 0;
+    margin-bottom: 0;
+}
+
+.video-description h4 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.video-description p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+/* Adjust video styling to work with descriptions */
+.video-item .gallery-video {
+    border-radius: 0 0 15px 15px;
+    margin-top: 0;
+}
+
+.video-item .service-tag {
+    top: 20px;
+    right: 20px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .video-description {
+        padding: 15px;
+    }
+    
+    .video-description h4 {
+        font-size: 1.1rem;
+    }
+    
+    .video-description p {
+        font-size: 0.9rem;
+    }
+}
         
     </style>
     
@@ -450,6 +502,7 @@
                     </div>
                 </div>
             </div>
+    
             <div class="gallery-item">
                 <img src="images/poswa logistics new images (7).jpeg" alt="Logistics service">
                 <div class="image-overlay">
